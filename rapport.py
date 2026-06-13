@@ -12,11 +12,15 @@ from pathlib import Path
 ROUGE, ORANGE, VERT, GRIS = "#D32F2F", "#E65100", "#2E7D32", "#666"
 
 
+def _eur(x: float) -> str:
+    return f"{x:.2f}".replace(".", ",") + " €"
+
+
 def _ligne_prix(e: dict, couleur: str) -> str:
     return f"""<tr>
       <td style="padding:8px 12px;border-bottom:1px solid #eee">{e['nom']}</td>
-      <td style="padding:8px 12px;border-bottom:1px solid #eee;text-align:right">{e['prix_avant']:.2f} MAD</td>
-      <td style="padding:8px 12px;border-bottom:1px solid #eee;text-align:right;font-weight:bold">{e['prix_apres']:.2f} MAD</td>
+      <td style="padding:8px 12px;border-bottom:1px solid #eee;text-align:right">{_eur(e['prix_avant'])}</td>
+      <td style="padding:8px 12px;border-bottom:1px solid #eee;text-align:right;font-weight:bold">{_eur(e['prix_apres'])}</td>
       <td style="padding:8px 12px;border-bottom:1px solid #eee;text-align:right;color:{couleur};font-weight:bold">{e['variation_pct']:+.1f}%</td>
     </tr>"""
 

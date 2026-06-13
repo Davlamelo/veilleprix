@@ -4,8 +4,8 @@
 > Chaque lundi matin, un email vous signale les baisses de prix, nouvelles promotions
 > et ruptures de stock chez vos concurrents — détectées automatiquement.
 
-![Rapport email](assets/rapport.png)
-
+![Rapport email](assets/rapport1.png)
+![Rapport email](assets/rapport2.png)
 ## Le problème
 
 Une PME de distribution suit ses concurrents à la main : quelqu'un visite leurs sites,

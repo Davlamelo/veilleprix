@@ -1,4 +1,5 @@
 __pycache__/
 *.pyc
 SCRIPT_VIDEO.md
-assets/
+data/historique.csv
+rapports/
