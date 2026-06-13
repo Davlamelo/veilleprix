@@ -1,0 +1,49 @@
+name: Veille tarifaire hebdomadaire
+
+on:
+  schedule:
+    - cron: "0 6 * * 1"        # chaque lundi à 06h00 UTC
+  workflow_dispatch:
+
+jobs:
+  veille:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write           # pour commiter l'historique mis à jour
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Installer les dépendances
+        run: pip install -r requirements.txt
+
+      - name: Mettre à jour le site démo (simule l'évolution des prix)
+        run: python generate_site.py
+
+      - name: Lancer la veille
+        env:
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASS: ${{ secrets.SMTP_PASS }}
+          RAPPORT_DESTINATAIRE: ${{ secrets.RAPPORT_DESTINATAIRE }}
+        run: python main.py
+
+      - name: Commiter l'historique
+        run: |
+          git config user.name "veilleprix-bot"
+          git config user.email "bot@veilleprix"
+          git add data/ rapports/
+          git diff --staged --quiet || git commit -m "data: relevé $(date +%F)"
+          git push
+
+      - name: Publier le rapport en artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: rapport-veille
+          path: rapports/*.html
+          retention-days: 90

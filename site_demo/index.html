@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grossimarket — Grossiste alimentaire B2B</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --vert:#1b5e3f; --vert-d:#103a27; --vert-l:#e9f3ec;
+  --fond:#f5f7f5; --carte:#fff; --bord:#e6eae6;
+  --encre:#1b2420; --gris:#69736c; --gris-c:#9aa39c;
+  --promo:#d6452f; --ambre:#b07d08;
+  --r:14px; --sh:0 1px 2px rgba(16,58,39,.05),0 6px 18px rgba(16,58,39,.05);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{font-family:'Inter',system-ui,-apple-system,'Segoe UI',Arial,sans-serif;
+  background:var(--fond);color:var(--encre);line-height:1.45;
+  -webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+
+.topbar{background:var(--vert-d);color:#cfe3d6;font-size:.76rem;letter-spacing:.01em}
+.topbar .wrap{display:flex;justify-content:space-between;align-items:center;
+  height:34px;flex-wrap:wrap;gap:8px}
+.topbar a{opacity:.85}.topbar a:hover{opacity:1}
+.topbar .sep{opacity:.4;margin:0 9px}
+
+header{background:#fff;border-bottom:1px solid var(--bord);position:sticky;top:0;z-index:20}
+header .wrap{display:flex;align-items:center;gap:26px;height:78px}
+.brand{display:flex;align-items:center;gap:13px;flex-shrink:0}
+.brand .mark{width:46px;height:46px;border-radius:12px;flex-shrink:0;
+  background:linear-gradient(150deg,#22744d,#0f3d28);
+  display:flex;align-items:center;justify-content:center;color:#fff;
+  font-weight:800;font-size:1.5rem;letter-spacing:-.04em;
+  box-shadow:0 3px 10px rgba(16,58,39,.28)}
+.brand .name{font-weight:800;font-size:1.32rem;letter-spacing:-.025em;color:var(--vert-d)}
+.brand .tag{font-size:.72rem;color:var(--gris);font-weight:500;margin-top:1px}
+.searchbar{flex:1;position:relative;max-width:520px}
+.searchbar svg{position:absolute;left:15px;top:50%;transform:translateY(-50%);
+  width:18px;height:18px;color:var(--gris-c)}
+.searchbar input{width:100%;height:44px;border:1.5px solid var(--bord);border-radius:10px;
+  padding:0 16px 0 42px;font-size:.9rem;font-family:inherit;background:var(--fond);
+  color:var(--encre)}
+.searchbar input::placeholder{color:var(--gris-c)}
+.actions{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.actions .btn{display:flex;align-items:center;gap:7px;height:42px;padding:0 16px;
+  border-radius:10px;font-size:.84rem;font-weight:600;cursor:default;white-space:nowrap}
+.actions .ghost{color:var(--vert-d)}
+.actions .ghost:hover{background:var(--vert-l)}
+.actions .solid{background:var(--vert);color:#fff;box-shadow:0 2px 8px rgba(27,94,63,.28)}
+.actions .solid .pastille{background:#fff;color:var(--vert);font-size:.68rem;font-weight:800;
+  border-radius:20px;padding:1px 7px;margin-left:2px}
+.actions svg{width:18px;height:18px}
+
+.catnav{background:#fff;border-bottom:1px solid var(--bord)}
+.catnav .wrap{display:flex;align-items:center;gap:4px;height:48px;overflow-x:auto;
+  scrollbar-width:none}
+.catnav .wrap::-webkit-scrollbar{display:none}
+.catnav a{font-size:.83rem;font-weight:600;color:var(--gris);padding:8px 13px;
+  border-radius:8px;white-space:nowrap}
+.catnav a:first-child{color:var(--vert-d)}
+.catnav a:hover{background:var(--vert-l);color:var(--vert-d)}
+
+.trust{background:#fff;border-bottom:1px solid var(--bord)}
+.trust .wrap{display:flex;gap:14px;padding:14px 28px;flex-wrap:wrap}
+.trust .item{display:flex;align-items:center;gap:10px;flex:1;min-width:200px}
+.trust .ic{width:36px;height:36px;border-radius:9px;background:var(--vert-l);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--vert)}
+.trust .ic svg{width:19px;height:19px}
+.trust .t{font-size:.82rem;font-weight:700;color:var(--encre);line-height:1.2}
+.trust .s{font-size:.73rem;color:var(--gris)}
+
+.releve-bar{background:var(--vert-l);border-bottom:1px solid #d6e8dc}
+.releve-bar .wrap{display:flex;align-items:center;gap:10px;padding:11px 28px;
+  font-size:.82rem;color:var(--vert-d);font-weight:600}
+.releve-bar .dot{width:8px;height:8px;border-radius:50%;background:var(--vert);
+  box-shadow:0 0 0 4px rgba(27,94,63,.16)}
+
+.toolbar{display:flex;align-items:flex-end;justify-content:space-between;
+  padding:30px 0 18px;flex-wrap:wrap;gap:12px}
+.toolbar h1{font-size:1.5rem;font-weight:800;letter-spacing:-.025em;color:var(--vert-d)}
+.toolbar .sub{font-size:.83rem;color:var(--gris);margin-top:3px}
+.toolbar .tri{display:flex;align-items:center;gap:9px;font-size:.82rem;color:var(--gris)}
+.toolbar select{height:40px;border:1.5px solid var(--bord);border-radius:9px;
+  padding:0 14px;font-size:.84rem;font-family:inherit;background:#fff;color:var(--encre);
+  font-weight:600;cursor:default}
+
+.grille{display:grid;grid-template-columns:repeat(auto-fill,minmax(218px,1fr));
+  gap:20px;padding-bottom:48px}
+.produit{background:var(--carte);border:1px solid var(--bord);border-radius:var(--r);
+  overflow:hidden;display:flex;flex-direction:column;transition:transform .18s,box-shadow .18s}
+.produit:hover{transform:translateY(-3px);box-shadow:var(--sh)}
+.vignette{position:relative;aspect-ratio:4/3;background:var(--tint);
+  display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--bord)}
+.vignette .illus{width:62%;height:62%;transition:transform .25s}
+.produit:hover .vignette .illus{transform:scale(1.06)}
+.format{position:absolute;left:11px;bottom:10px;background:rgba(255,255,255,.92);
+  backdrop-filter:blur(2px);font-size:.68rem;font-weight:700;color:var(--vert-d);
+  padding:3px 9px;border-radius:7px;box-shadow:0 1px 3px rgba(0,0,0,.07)}
+.badge-promo{position:absolute;top:11px;right:11px;background:var(--promo);color:#fff;
+  font-size:.7rem;font-weight:800;padding:4px 10px;border-radius:7px;
+  box-shadow:0 3px 8px rgba(214,69,47,.35)}
+.flag{position:absolute;top:11px;left:11px;font-size:.66rem;font-weight:700;
+  padding:3px 9px;border-radius:7px;background:#fff;color:var(--gris)}
+
+.corps{padding:15px 16px 17px;flex:1;display:flex;flex-direction:column}
+.meta{display:flex;align-items:center;gap:8px;margin-bottom:7px}
+.ref{font-size:.66rem;font-weight:700;letter-spacing:.04em;color:var(--gris-c)}
+.categorie{font-size:.66rem;font-weight:700;color:var(--vert);background:var(--vert-l);
+  padding:2px 8px;border-radius:20px}
+.nom{font-size:.92rem;font-weight:600;line-height:1.32;color:var(--encre);
+  min-height:36px;margin-bottom:11px}
+.prix-zone{margin-top:auto}
+.prix{font-size:1.34rem;font-weight:800;color:var(--vert-d);letter-spacing:-.02em;
+  display:flex;align-items:baseline;gap:7px;flex-wrap:wrap}
+.prix-barre{text-decoration:line-through;color:var(--gris-c);font-size:.86rem;font-weight:600}
+.unite{font-size:.74rem;font-weight:600;color:var(--gris)}
+.prix-note{font-size:.7rem;color:var(--gris);margin-top:2px}
+.dispo{display:flex;align-items:center;gap:6px;font-size:.74rem;font-weight:600;margin-top:9px}
+.dispo .pt{width:7px;height:7px;border-radius:50%}
+.dispo.ok{color:#1f7a4d}.dispo.ok .pt{background:#27a563}
+.dispo.bas{color:var(--ambre)}.dispo.bas .pt{background:#e0a800}
+.rupture{display:flex;align-items:center;gap:6px;font-size:.74rem;font-weight:700;
+  color:var(--promo);margin-top:9px}
+.rupture .pt{width:7px;height:7px;border-radius:50%;background:var(--promo)}
+.ajout{margin-top:13px;height:40px;border:1.5px solid var(--vert);background:#fff;
+  color:var(--vert);border-radius:10px;font-family:inherit;font-size:.83rem;font-weight:700;
+  cursor:default;display:flex;align-items:center;justify-content:center;gap:8px}
+.ajout:hover{background:var(--vert);color:#fff}
+.ajout svg{width:16px;height:16px}
+.ajout.off{border-color:var(--bord);color:var(--gris-c)}
+.ajout.off:hover{background:#fff;color:var(--gris-c)}
+
+footer{background:var(--vert-d);color:#9fbfa9;margin-top:10px}
+footer .wrap{display:flex;justify-content:space-between;gap:30px;padding:34px 28px;flex-wrap:wrap}
+footer .name{color:#fff;font-weight:800;font-size:1.1rem;letter-spacing:-.02em;margin-bottom:7px}
+footer p{font-size:.8rem;line-height:1.6;max-width:340px}
+footer .col h4{color:#fff;font-size:.78rem;font-weight:700;margin-bottom:10px;letter-spacing:.02em}
+footer .col a{display:block;font-size:.8rem;margin-bottom:7px;opacity:.85}
+.legal{border-top:1px solid rgba(255,255,255,.1)}
+.legal .wrap{padding:14px 28px;font-size:.72rem;opacity:.6;justify-content:center;text-align:center}
+
+@media(max-width:760px){
+  header .wrap{height:auto;flex-wrap:wrap;padding:14px 0;gap:14px}
+  .searchbar{order:3;flex-basis:100%;max-width:none}
+  .toolbar h1{font-size:1.25rem}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar"><div class="wrap">
+  <span>&#9742;&nbsp; 01&nbsp;80&nbsp;88&nbsp;00&nbsp;00 &nbsp;·&nbsp; Livraison 48h en France métropolitaine</span>
+  <span><a href="#">Suivi de commande</a><span class="sep">|</span><a href="#">Espace pro</a><span class="sep">|</span><a href="#">Mon compte</a></span>
+</div></div>
+
+<header><div class="wrap">
+  <a href="#" class="brand">
+    <div class="mark">G</div>
+    <div><div class="name">Grossimarket</div><div class="tag">Grossiste alimentaire B2B</div></div>
+  </a>
+  <div class="searchbar">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg>
+    <input type="text" placeholder="Rechercher un produit, une référence…" disabled>
+  </div>
+  <div class="actions">
+    <span class="btn ghost"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>Compte</span>
+    <span class="btn solid"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 7h15l-1.5 9H7z"/><path d="M5 7L4 3H2"/><circle cx="8" cy="20" r="1.4"/><circle cx="17" cy="20" r="1.4"/></svg>Devis<span class="pastille">0</span></span>
+  </div>
+</div></header>
+
+<nav class="catnav"><div class="wrap">
+  <a href="#">Tout le catalogue</a><a href="#">Huiles</a><a href="#">Farines</a><a href="#">Sucres</a><a href="#">Thés & Cafés</a><a href="#">Riz & Pâtes</a><a href="#">Conserves</a><a href="#">Légumineuses</a><a href="#">Laitiers</a><a href="#">Boissons</a><a href="#">Biscuiterie</a><a href="#">Épicerie sucrée</a><a href="#">Condiments</a>
+</div></nav>
+
+<section class="trust"><div class="wrap">
+  <div class="item"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h11v8H3z"/><path d="M14 10h4l3 3v2h-7z"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg></div><div><div class="t">Livraison 48h</div><div class="s">France métropolitaine</div></div></div>
+  <div class="item"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18"/></svg></div><div><div class="t">Paiement à 30 jours</div><div class="s">Pour les pros</div></div></div>
+  <div class="item"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7l8-4 8 4v6c0 5-4 8-8 9-4-1-8-4-8-9z"/><path d="M9 12l2 2 4-4"/></svg></div><div><div class="t">Commande mini 150&nbsp;€</div><div class="s">Franco dès 500&nbsp;€ HT</div></div></div>
+  <div class="item"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19V9m5 10V5m5 14v-8m5 8V7"/></svg></div><div><div class="t">+1&nbsp;200 références</div><div class="s">Catalogue pro complet</div></div></div>
+</div></section>
+
+<div class="releve-bar"><div class="wrap"><span class="dot"></span>Tarifs professionnels HT · Relevé du 13/06/2026</div></div>
+
+<main class="wrap">
+  <div class="toolbar">
+    <div><h1>Catalogue alimentaire</h1><div class="sub">30 références en épicerie sèche, conserves &amp; produits secs</div></div>
+    <div class="tri"><span>Trier&nbsp;:</span><select disabled><option>Pertinence</option><option>Prix croissant</option><option>Nouveautés</option></select></div>
+  </div>
+  <div class="grille">
+    <article class="produit" data-ref="GM001">
+      <div class="vignette" style="--tint:#fbf3e2">
+        <svg class="illus" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect x="28" y="7" width="8" height="5" rx="1" fill="#1b5e3f"/><path d="M26 16h12v4l2 3v25a4 4 0 0 1-4 4H28a4 4 0 0 1-4-4V23l2-3z" fill="#e0a23b"/><path d="M26 16h12v4l2 3v6H24v-6l2-3z" fill="#cf8f2c"/><rect x="24.5" y="31" width="15" height="15" rx="2" fill="#fff"/><rect x="27" y="34.5" width="10" height="2.2" rx="1.1" fill="#1b5e3f"/><rect x="27" y="38.6" width="10" height="1.6" rx=".8" fill="#cba24e"/><rect x="27" y="41.7" width="6.5" height="1.6" rx=".8" fill="#cba24e"/></svg>
+        <span class="format">5 L</span>
+      </div>
+      <div class="corps">
+        <div class="meta"><span class="ref">GM001</span><span class="categorie">Huiles</span></div>
+        <h3 class="nom">Huile de tournesol 5L</h3>
+        <div class="prix-zone">
+          <div class="prix">11,78 <span class="unite">€</span></div>
+          <div class="prix-note">HT / colis</div>
+          <div class="dispo ok"><span class="pt"></span>En stock</div>
+        </div>
+        <button class="ajout" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>Ajouter au devis</button>
+      </div>
+    </article>
+    <article class="produit" data-ref="GM002">
+      <div class="vignette" style="--tint:#fbf3e2">
+        <svg class="illus" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect x="28" y="7" width="8" height="5" rx="1" fill="#1b5e3f"/><path d="M26 16h12v4l2 3v25a4 4 0 0 1-4 4H28a4 4 0 0 1-4-4V23l2-3z" fill="#e0a23b"/><path d="M26 16h12v4l2 3v6H24v-6l2-3z" fill="#cf8f2c"/><rect x="24.5" y="31" width="15" height="15" rx="2" fill="#fff"/><rect x="27" y="34.5" width="10" height="2.2" rx="1.1" fill="#1b5e3f"/><rect x="27" y="38.6" width="10" height="1.6" rx=".8" fill="#cba24e"/><rect x="27" y="41.7" width="6.5" height="1.6" rx=".8" fill="#cba24e"/></svg>
+        <span class="format">1 L</span>
+      </div>
+      <div class="corps">
+        <div class="meta"><span class="ref">GM002</span><span class="categorie">Huiles</span></div>
+        <h3 class="nom">Huile d'olive extra vierge 1L</h3>
+        <div class="prix-zone">
+          <div class="prix">7,50 <span class="unite">€</span></div>
+          <div class="prix-note">HT / colis</div>
+          <div class="dispo ok"><span class="pt"></span>En stock</div>
+        </div>
+        <button class="ajout" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>Ajouter au devis</button>
+      </div>
+    </article>
+    <article class="produit" data-ref="GM003">
+      <div class="vignette" style="--tint:#f6f1e6">
+        <svg class="illus" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><path d="M19 23c2-4 5-6 13-6s11 2 13 6l-1.5 28a4 4 0 0 1-4 3.7H24.5a4 4 0 0 1-4-3.7z" fill="#ddccA3"/><path d="M19 23c3 2.4 6.5 3.4 13 3.4s10-1 13-3.4l-1-5c-3 2.2-6.6 3.2-12 3.2s-9-1-12-3.2z" fill="#c9b889"/><rect x="24.5" y="35" width="15" height="13" rx="1.6" fill="#fff"/><rect x="27" y="38.5" width="10" height="2.2" rx="1.1" fill="#1b5e3f"/><rect x="27" y="42.6" width="7" height="1.6" rx=".8" fill="#c8a24b"/></svg>
+        <span class="format">25 kg</span>
+      </div>
+      <div class="corps">
+        <div class="meta"><span class="ref">GM003</span><span class="categorie">Farines</span></div>
+        <h3 class="nom">Farine de blé T55 25kg</h3>
+        <div class="prix-zone">
+          <div class="prix">19,45 <span class="unite">€</span></div>
+          <div class="prix-note">HT / colis</div>
+          <div class="dispo bas"><span class="pt"></span>Stock limité</div>
+        </div>
+        <button class="ajout" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>Ajouter au devis</button>
+      </div>
+    </article>
+    <article class="produit" data-ref="GM004">
+      <div class="vignette" style="--tint:#f6f1e6">
+        <svg class="illus" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><path d="M19 23c2-4 5-6 13-6s11 2 13 6l-1.5 28a4 4 0 0 1-4 3.7H24.5a4 4 0 0 1-4-3.7z" fill="#ddccA3"/><path d="M19 23c3 2.4 6.5 3.4 13 3.4s10-1 13-3.4l-1-5c-3 2.2-6.6 3.2-12 3.2s-9-1-12-3.2z" fill="#c9b889"/><rect x="24.5" y="35" width="15" height="13" rx="1.6" fill="#fff"/><rect x="27" y="38.5" width="10" height="2.2" rx="1.1" fill="#1b5e3f"/><rect x="27" y="42.6" width="7" height="1.6" rx=".8" fill="#c8a24b"/></svg>
+        <span class="format">10 kg</span>
+      </div>
+      <div class="corps">
+        <div class="meta"><span class="ref">GM004</span><span class="categorie">Farines</span></div>
+        <h3 class="nom">Farine de blé T45 10kg</h3>
+        <div class="prix-zone">
+          <div class="prix">8,90 <span class="unite">€</span></div>
+          <div class="prix-note">HT / colis</div>
+          <div class="dispo ok"><span class="pt"></span>En stock</div>
+        </div>
+        <button class="ajout" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>Ajouter au devis</button>
+      </div>
+    </article>
+    <article class="produit" data-ref="GM005">
+      <div class="vignette" style="--tint:#eef2f6">
+        <svg class="illus" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><path d="M19 23c2-4 5-6 13-6s11 2 13 6l-1.5 28a4 4 0 0 1-4 3.7H24.5a4 4 0 0 1-4-3.7z" fill="#dbe1e8"/><path d="M19 23c3 2.4 6.5 3.4 13 3.4s10-1 13-3.4l-1-5c-3 2.2-6.6 3.2-12 3.2s-9-1-12-3.2z" fill="#c6cfda"/><g fill="#fff" stroke="#bcc6d2" stroke-width=".6"><rect x="27" y="11.5" width="5" height="5" rx=".8"/><rect x="33" y="13" width="5" height="5" rx=".8"/><rect x="30" y="8" width="5" height="5" rx=".8"/></g><rect x="24.5" y="35" width="15" height="13" rx="1.6" fill="#fff"/><rect x="27" y="38.5" width="10" height="2.2" rx="1.1" fill="#1b5e3f"/><rect x="27" y="42.6" width="7" height="1.6" rx=".8" fill="#9fb0c2"/></svg>
+        <span class="format">50 kg</span>
+      </div>
+      <div class="corps">
+        <div class="meta"><span class="ref">GM005</span><span class="categorie">Sucres</span></div>
+        <h3 class="nom">Sucre granulé 50kg</h3>
+        <div class="prix-zone">
+          <div class="prix">49,00 <span class="unite">€</span></div>
+          <div class="prix-note">HT / colis</div>
+          <div class="rupture"><span class="pt"></span>Rupture de stock</div>
+        </div>
+        <button class="ajout off" disabled>Indisponible</button>
+      </div>
+    </article>
+    <article class="produit" data-ref="GM006">
+      <div class="vignette" style="--tint:#f1ebe3"><span class="flag">Nouveau</span>
+        <svg class="illus" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><path d="M24 12h16l1.6 4.5H22.4z" fill="#5d3f25"/><path d="M22 16.5h20a1.6 1.6 0 0 1 1.6 1.7l-1 32.5a4 4 0 0 1-4 3.8H25.4a4 4 0 0 1-4-3.8l-1-32.5A1.6 1.6 0 0 1 22 16.5z" fill="#7a5230"/><rect x="26" y="28" width="12" height="16" rx="2" fill="#efe6d8"/><path d="M32 31c2.4 0 4 1.6 4 3.6 0 1.4-1 2.4-2 3 .4-1.2 0-2.6-2-3.6 0 1.2-.6 2-1.6 2.6-.3-1.8.4-3.6 1.6-5.6z" fill="#7a5230"/><rect x="28.5" y="40" width="7" height="1.8" rx=".9" fill="#7a5230"/></svg>
+        <span class="format">5 kg</span>
+      </div>
+      <div class="corps">
+        <div class="meta"><span class="ref">GM006</span><span class="categorie">Thés & Cafés</span></div>
+        <h3 class="nom">Thé vert Chunmee 5kg</h3>
+        <div class="prix-zone">
+          <div class="prix">39,00 <span class="unite">€</span></div>
+          <div class="prix-note">HT / colis</div>
+          <div class="dispo bas"><span class="pt"></span>Stock limité</div>
+        </div>
+        <button class="ajout" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>Ajouter au devis</button>
+      </div>
+    </article>
+    <article class="produit" data-ref="GM007">
+      <div class="vignette" style="--tint:#f1ebe3"><span class="flag">Nouveau</span>
+        <svg class="illus" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><path d="M24 12h16l1.6 4.5H22.4z" fill="#5d3f25"/><path d="M22 16.5h20a1.6 1.6 0 0 1 1.6 1.7l-1 32.5a4 4 0 0 1-4 3.8H25.4a4 4 0 0 1-4-3.8l-1-32.5A1.6 1.6 0 0 1 22 16.5z" fill="#7a5230"/><rect x="26" y="28" width="12" height="16" rx="2" fill="#efe6d8"/><path d="M32 31c2.4 0 4 1.6 4 3.6 0 1.4-1 2.4-2 3 .4-1.2 0-2.6-2-3.6 0 1.2-.6 2-1.6 2.6-.3-1.8.4-3.6 1.6-5.6z" fill="#7a5230"/><rect x="28.5" y="40" width="7" height="1.8" rx=".9" fill="#7a5230"/></svg>
+        <span class="format">1 kg</span>
+      </div>
+      <div class="corps">
+        <div class="meta"><span class="ref">GM007</span><span class="categorie">Thés & Cafés</span></div>
+        <h3 class="nom">Café moulu 1kg</h3>
+        <div class="prix-zone">
+          <div class="prix">12,50 <span class="unite">€</span></div>
+          <div class="prix-note">HT / colis</div>
+          <div class="dispo ok"><span class="pt"></span>En stock</div>
+        </div>
+        <button class="ajout" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>Ajouter au devis</button>
+      </div>
+    </article>
+    <article class="produit" data-ref="GM008">
+      <div class="vignette" style="--tint:#f5efe1">
+        <svg class="illus" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><path d="M19 23c2-4 5-6 13-6s11 2 13 6l-1.5 28a4 4 0 0 1-4 3.7H24.5a4 4 0 0 1-4-3.7z" fill="#e8dcc0"/><path d="M19 23c3 2.4 6.5 3.4 13 3.4s10-1 13-3.4l-1-5c-3 2.2-6.6 3.2-12 3.2s-9-1-12-3.2z" fill="#d8caa6"/><rect x="25.5" y="33" width="13" height="15" rx="1.6" fill="#fffdf6"/><g fill="#cdb778"><ellipse cx="29" cy="38" rx="1.5" ry=".7" transform="rotate(35 29 38)"/><ellipse cx="34" cy="39" rx="1.5" ry=".7" transform="rotate(-20 34 39)"/><ellipse cx="31" cy="42" rx="1.5" ry=".7" transform="rotate(15 31 42)"/><ellipse cx="35" cy="43" rx="1.5" ry=".7" transform="rotate(50 35 43)"/><ellipse cx="28" cy="43" rx="1.5" ry=".7" transform="rotate(-35 28 43)"/></g><rect x="26" y="29.5" width="12" height="2" rx="1" fill="#1b5e3f"/></svg>
+        <span class="format">25 kg</span>
+      </div>
+      <div class="corps">
+        <div class="meta"><span class="ref">GM008</span><span class="categorie">Riz & Pâtes</span></div>
+        <h3 class="nom">Riz long grain 25kg</h3>
+        <div class="prix-zone">
+          <div class="prix">31,00 <span class="unite">€</span></div>
+          <div class="prix-note">HT / colis</div>
+          <div class="dispo bas"><span class="pt"></span>Stock limité</div>
+        </div>
+        <button class="ajout" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>Ajouter au devis</button>
+      </div>
+    </article>
+    <article class="produit" data-ref="GM009">
+      <div class="vignette" style="--tint:#f5efe1">
+        <svg class="illus" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><path d="M19 23c2-4 5-6 13-6s11 2 13 6l-1.5 28a4 4 0 0 1-4 3.7H24.5a4 4 0 0 1-4-3.7z" fill="#e8dcc0"/><path d="M19 23c3 2.4 6.5 3.4 13 3.4s10-1 13-3.4l-1-5c-3 2.2-6.6 3.2-12 3.2s-9-1-12-3.2z" fill="#d8caa6"/><rect x="25.5" y="33" width="13" height="15" rx="1.6" fill="#fffdf6"/><g fill="#cdb778"><ellipse cx="29" cy="38" rx="1.5" ry=".7" transform="rotate(35 29 38)"/><ellipse cx="34" cy="39" rx="1.5" ry=".7" transform="rotate(-20 34 39)"/><ellipse cx="31" cy="42" rx="1.5" ry=".7" transform="rotate(15 31 42)"/><ellipse cx="35" cy="43" rx="1.5" ry=".7" transform="rotate(50 35 43)"/><ellipse cx="28" cy="43" rx="1.5" ry=".7" transform="rotate(-35 28 43)"/></g><rect x="26" y="29.5" width="12" height="2" rx="1" fill="#1b5e3f"/></svg>
+        <span class="format">500 g · ×20</span>
+      </div>
+      <div class="corps">
+        <div class="meta"><span class="ref">GM009</span><span class="categorie">Riz & Pâtes</span></div>
+        <h3 class="nom">Pâtes spaghetti 500g x20</h3>
+        <div class="prix-zone">
+          <div class="prix">13,80 <span class="unite">€</span></div>
+          <div class="prix-note">HT / colis</div>
+          <div class="dispo ok"><span class="pt"></span>En stock</div>
+        </div>
+        <button class="ajout" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>Ajouter au devis</button>
+      </div>
+    </article>
+    <article class="produit" data-ref="GM010">
+      <div class="vignette" style="--tint:#f5efe1">
+        <svg class="illus" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><path d="M19 23c2-4 5-6 13-6s11 2 13 6l-1.5 28a4 4 0 0 1-4 3.7H24.5a4 4 0 0 1-4-3.7z" fill="#e8dcc0"/><path d="M19 23c3 2.4 6.5 3.4 13 3.4s10-1 13-3.4l-1-5c-3 2.2-6.6 3.2-12 3.2s-9-1-12-3.2z" fill="#d8caa6"/><rect x="25.5" y="33" width="13" height="15" rx="1.6" fill="#fffdf6"/><g fill="#cdb778"><ellipse cx="29" cy="38" rx="1.5" ry=".7" transform="rotate(35 29 38)"/><ellipse cx="34" cy="39" rx="1.5" ry=".7" transform="rotate(-20 34 39)"/><ellipse cx="31" cy="42" rx="1.5" ry=".7" transform="rotate(15 31 42)"/><ellipse cx="35" cy="43" rx="1.5" ry=".7" transform="rotate(50 35 43)"/><ellipse cx="28" cy="43" rx="1.5" ry=".7" transform="rotate(-35 28 43)"/></g><rect x="26" y="29.5" width="12" height="2" rx="1" fill="#1b5e3f"/></svg>
+        <span class="format">25 kg</span>
+      </div>
+      <div class="corps">
+        <div class="meta"><span class="ref">GM010</span><span class="categorie">Riz & Pâtes</span></div>
+        <h3 class="nom">Couscous moyen 25kg</h3>
+        <div class="prix-zone">
+          <div class="prix">28,50 <span class="unite">€</span></div>
+          <div class="prix-note">HT / colis</div>
+          <div class="dispo bas"><span class="pt"></span>Stock limité</div>
+        </div>
+        <button class="ajout" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>Ajouter au devis</button>
+      </div>
+    </article>
+    <article class="produit" data-ref="GM011">
+      <div class="vignette" style="--tint:#eef1f2">
+        <svg class="illus" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect x="21" y="16" width="22" height="32" fill="#bcc4c8"/><ellipse cx="32" cy="16" rx="11" ry="3.3" fill="#d2d8db"/><ellipse cx="32" cy="48" rx="11" ry="3.3" fill="#a8b1b5"/><ellipse cx="32" cy="15.6" rx="5.5" ry="1.6" fill="#9aa3a7"/><rect x="21" y="24" width="22" height="15" fill="#fff"/><rect x="24.5" y="27.5" width="15" height="2.4" rx="1.2" fill="#1b5e3f"/><rect x="24.5" y="32" width="11" height="1.8" rx=".9" fill="#d6452f"/><rect x="24.5" y="35" width="13" height="1.8" rx=".9" fill="#bcc4c8"/></svg>
+        <span class="format">4.5 kg · ×6</span>
+      </div>
+      <div class="corps">
+        <div class="meta"><span class="ref">GM011</span><span class="categorie">Conserves</span></div>
+        <h3 class="nom">Tomate concentrée 4.5kg x6</h3>
+        <div class="prix-zone">
+          <div class="prix">24,90 <span class="unite">€</span></div>
+          <div class="prix-note">HT / colis</div>
+          <div class="dispo ok"><span class="pt"></span>En stock</div>
+        </div>
+        <button class="ajout" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>Ajouter au devis</button>
+      </div>
+    </article>
+    <article class="produit" data-ref="GM012">
+      <div class="vignette" style="--tint:#eef1f2"><span class="badge-promo">&minus;12%</span>
+        <svg class="illus" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect x="21" y="16" width="22" height="32" fill="#bcc4c8"/><ellipse cx="32" cy="16" rx="11" ry="3.3" fill="#d2d8db"/><ellipse cx="32" cy="48" rx="11" ry="3.3" fill="#a8b1b5"/><ellipse cx="32" cy="15.6" rx="5.5" ry="1.6" fill="#9aa3a7"/><rect x="21" y="24" width="22" height="15" fill="#fff"/><rect x="24.5" y="27.5" width="15" height="2.4" rx="1.2" fill="#1b5e3f"/><rect x="24.5" y="32" width="11" height="1.8" rx=".9" fill="#d6452f"/><rect x="24.5" y="35" width="13" height="1.8" rx=".9" fill="#bcc4c8"/></svg>
+        <span class="format">×50</span>
+      </div>
+      <div class="corps">
+        <div class="meta"><span class="ref">GM012</span><span class="categorie">Conserves</span></div>
+        <h3 class="nom">Sardines à l'huile x50</h3>
+        <div class="prix-zone">
+          <div class="prix"><span class="prix-barre">32,67</span>28,75 <span class="unite">€</span></div>
+          <div class="prix-note">HT / colis</div>
+          <div class="dispo ok"><span class="pt"></span>En stock</div>
+        </div>
+        <button class="ajout" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>Ajouter au devis</button>
+      </div>
+    </article>
+    <article class="produit" data-ref="GM013">
+      <div class="vignette" style="--tint:#eef1f2">
+        <svg class="illus" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect x="21" y="16" width="22" height="32" fill="#bcc4c8"/><ellipse cx="32" cy="16" rx="11" ry="3.3" fill="#d2d8db"/><ellipse cx="32" cy="48" rx="11" ry="3.3" fill="#a8b1b5"/><ellipse cx="32" cy="15.6" rx="5.5" ry="1.6" fill="#9aa3a7"/><rect x="21" y="24" width="22" height="15" fill="#fff"/><rect x="24.5" y="27.5" width="15" height="2.4" rx="1.2" fill="#1b5e3f"/><rect x="24.5" y="32" width="11" height="1.8" rx=".9" fill="#d6452f"/><rect x="24.5" y="35" width="13" height="1.8" rx=".9" fill="#bcc4c8"/></svg>
+        <span class="format">×24</span>
+      </div>
+      <div class="corps">
+        <div class="meta"><span class="ref">GM013</span><span class="categorie">Conserves</span></div>
+        <h3 class="nom">Thon entier à l'huile x24</h3>
+        <div class="prix-zone">
+          <div class="prix">45,00 <span class="unite">€</span></div>
+          <div class="prix-note">HT / colis</div>
+          <div class="dispo ok"><span class="pt"></span>En stock</div>
+        </div>
+        <button class="ajout" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>Ajouter au devis</button>
+      </div>
+    </article>
+    <article class="produit" data-ref="GM014">
+      <div class="vignette" style="--tint:#eef2e8">
+        <svg class="illus" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect x="24" y="9" width="16" height="4.5" rx="1.4" fill="#1b5e3f"/><path d="M23 14h18a2 2 0 0 1 2 2v32a4 4 0 0 1-4 4H25a4 4 0 0 1-4-4V16a2 2 0 0 1 2-2z" fill="#cfe0d8" opacity=".5"/><path d="M23 14h18a2 2 0 0 1 2 2v32a4 4 0 0 1-4 4H25a4 4 0 0 1-4-4V16a2 2 0 0 1 2-2z" fill="none" stroke="#b9ccc1" stroke-width="1"/><g fill="#8a9a55"><circle cx="28" cy="42" r="2.4"/><circle cx="34" cy="44" r="2.4"/><circle cx="31" cy="38" r="2.4"/><circle cx="37" cy="40.5" r="2.4"/><circle cx="26" cy="46.5" r="2.4"/><circle cx="32" cy="47.5" r="2.4"/><circle cx="38" cy="46.5" r="2.4"/></g><rect x="26" y="23" width="12" height="9" rx="1.6" fill="#fff"/><rect x="28" y="26" width="8" height="1.8" rx=".9" fill="#1b5e3f"/></svg>
+        <span class="format">1 kg · ×12</span>
+      </div>
+      <div class="corps">
+        <div class="meta"><span class="ref">GM014</span><span class="categorie">Légumineuses</span></div>
+        <h3 class="nom">Pois chiches 1kg x12</h3>
+        <div class="prix-zone">
+          <div class="prix">13,50 <span class="unite">€</span></div>
+          <div class="prix-note">HT / colis</div>
+          <div class="dispo ok"><span class="pt"></span>En stock</div>
+        </div>
+        <button class="ajout" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>Ajouter au devis</button>
+      </div>
+    </article>
+    <article class="produit" data-ref="GM015">
+      <div class="vignette" style="--tint:#eef2e8">
+        <svg class="illus" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect x="24" y="9" width="16" height="4.5" rx="1.4" fill="#1b5e3f"/><path d="M23 14h18a2 2 0 0 1 2 2v32a4 4 0 0 1-4 4H25a4 4 0 0 1-4-4V16a2 2 0 0 1 2-2z" fill="#cfe0d8" opacity=".5"/><path d="M23 14h18a2 2 0 0 1 2 2v32a4 4 0 0 1-4 4H25a4 4 0 0 1-4-4V16a2 2 0 0 1 2-2z" fill="none" stroke="#b9ccc1" stroke-width="1"/><g fill="#8a9a55"><circle cx="28" cy="42" r="2.4"/><circle cx="34" cy="44" r="2.4"/><circle cx="31" cy="38" r="2.4"/><circle cx="37" cy="40.5" r="2.4"/><circle cx="26" cy="46.5" r="2.4"/><circle cx="32" cy="47.5" r="2.4"/><circle cx="38" cy="46.5" r="2.4"/></g><rect x="26" y="23" width="12" height="9" rx="1.6" fill="#fff"/><rect x="28" y="26" width="8" height="1.8" rx=".9" fill="#1b5e3f"/></svg>
+        <span class="format">1 kg · ×12</span>
+      </div>
+      <div class="corps">
+        <div class="meta"><span class="ref">GM015</span><span class="categorie">Légumineuses</span></div>
+        <h3 class="nom">Lentilles vertes 1kg x12</h3>
+        <div class="prix-zone">
+          <div class="prix">15,90 <span class="unite">€</span></div>
+          <div class="prix-note">HT / colis</div>
+          <div class="dispo ok"><span class="pt"></span>En stock</div>
+        </div>
+        <button class="ajout" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>Ajouter au devis</button>
+      </div>
+    </article>
+    <article class="produit" data-ref="GM016">
+      <div class="vignette" style="--tint:#eef3f8"><span class="flag">Nouveau</span>
+        <svg class="illus" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><path d="M24 18.5l8-7.5 8 7.5v31a3 3 0 0 1-3 3H27a3 3 0 0 1-3-3z" fill="#e6edf3"/><path d="M24 18.5l8-7.5 8 7.5-8 3.8z" fill="#cdd9e4"/><rect x="27" y="30" width="10" height="13" rx="1.4" fill="#fff"/><circle cx="32" cy="34" r="2.6" fill="#5aa9d6"/><rect x="28.5" y="39" width="7" height="1.8" rx=".9" fill="#1b5e3f"/></svg>
+        <span class="format">1 L · ×12</span>
+      </div>
+      <div class="corps">
+        <div class="meta"><span class="ref">GM016</span><span class="categorie">Laitiers</span></div>
+        <h3 class="nom">Lait UHT 1L x12</h3>
+        <div class="prix-zone">
+          <div class="prix">10,26 <span class="unite">€</span></div>
+          <div class="prix-note">HT / colis</div>
+          <div class="dispo ok"><span class="pt"></span>En stock</div>
+        </div>
+        <button class="ajout" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>Ajouter au devis</button>
+      </div>
+    </article>
+    <article class="produit" data-ref="GM017">
+      <div class="vignette" style="--tint:#eef3f8">
+        <svg class="illus" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><path d="M24 18.5l8-7.5 8 7.5v31a3 3 0 0 1-3 3H27a3 3 0 0 1-3-3z" fill="#e6edf3"/><path d="M24 18.5l8-7.5 8 7.5-8 3.8z" fill="#cdd9e4"/><rect x="27" y="30" width="10" height="13" rx="1.4" fill="#fff"/><circle cx="32" cy="34" r="2.6" fill="#5aa9d6"/><rect x="28.5" y="39" width="7" height="1.8" rx=".9" fill="#1b5e3f"/></svg>
+        <span class="format">2.5 kg</span>
+      </div>
+      <div class="corps">
+        <div class="meta"><span class="ref">GM017</span><span class="categorie">Laitiers</span></div>
+        <h3 class="nom">Lait en poudre 2.5kg</h3>
+        <div class="prix-zone">
+          <div class="prix">18,50 <span class="unite">€</span></div>
+          <div class="prix-note">HT / colis</div>
+          <div class="dispo ok"><span class="pt"></span>En stock</div>
+        </div>
+        <button class="ajout" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>Ajouter au devis</button>
+      </div>
+    </article>
+    <article class="produit" data-ref="GM018">
+      <div class="vignette" style="--tint:#eef3f8">
+        <svg class="illus" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><path d="M24 18.5l8-7.5 8 7.5v31a3 3 0 0 1-3 3H27a3 3 0 0 1-3-3z" fill="#e6edf3"/><path d="M24 18.5l8-7.5 8 7.5-8 3.8z" fill="#cdd9e4"/><rect x="27" y="30" width="10" height="13" rx="1.4" fill="#fff"/><circle cx="32" cy="34" r="2.6" fill="#5aa9d6"/><rect x="28.5" y="39" width="7" height="1.8" rx=".9" fill="#1b5e3f"/></svg>
+        <span class="format">200 g · ×40</span>
+      </div>
+      <div class="corps">
+        <div class="meta"><span class="ref">GM018</span><span class="categorie">Laitiers</span></div>
+        <h3 class="nom">Beurre 200g x40</h3>
+        <div class="prix-zone">
+          <div class="prix">88,00 <span class="unite">€</span></div>
+          <div class="prix-note">HT / colis</div>
+          <div class="dispo ok"><span class="pt"></span>En stock</div>
+        </div>
+        <button class="ajout" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>Ajouter au devis</button>
+      </div>
+    </article>
+    <article class="produit" data-ref="GM019">
+      <div class="vignette" style="--tint:#eaf4fa">
+        <svg class="illus" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect x="29" y="8" width="6" height="4" rx="1" fill="#1b5e3f"/><path d="M28 12h8v5l2 3v27a4 4 0 0 1-4 4h-4a4 4 0 0 1-4-4V20l2-3z" fill="#5aa9d6"/><path d="M28 12h8v5l2 3v4H26v-4l2-3z" fill="#4795c2"/><rect x="25.5" y="30" width="13" height="14" rx="1.6" fill="#fff" opacity=".94"/><rect x="28" y="33" width="8" height="2.2" rx="1.1" fill="#1b5e3f"/><rect x="28" y="37" width="8" height="1.6" rx=".8" fill="#5aa9d6"/><rect x="28" y="40" width="5" height="1.6" rx=".8" fill="#5aa9d6"/></svg>
+        <span class="format">1.5 L · ×6</span>
+      </div>
+      <div class="corps">
+        <div class="meta"><span class="ref">GM019</span><span class="categorie">Boissons</span></div>
+        <h3 class="nom">Eau minérale 1.5L x6</h3>
+        <div class="prix-zone">
+          <div class="prix">2,96 <span class="unite">€</span></div>
+          <div class="prix-note">HT / colis</div>
+          <div class="dispo ok"><span class="pt"></span>En stock</div>
+        </div>
+        <button class="ajout" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>Ajouter au devis</button>
+      </div>
+    </article>
+    <article class="produit" data-ref="GM020">
+      <div class="vignette" style="--tint:#eaf4fa">
+        <svg class="illus" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect x="29" y="8" width="6" height="4" rx="1" fill="#1b5e3f"/><path d="M28 12h8v5l2 3v27a4 4 0 0 1-4 4h-4a4 4 0 0 1-4-4V20l2-3z" fill="#5aa9d6"/><path d="M28 12h8v5l2 3v4H26v-4l2-3z" fill="#4795c2"/><rect x="25.5" y="30" width="13" height="14" rx="1.6" fill="#fff" opacity=".94"/><rect x="28" y="33" width="8" height="2.2" rx="1.1" fill="#1b5e3f"/><rect x="28" y="37" width="8" height="1.6" rx=".8" fill="#5aa9d6"/><rect x="28" y="40" width="5" height="1.6" rx=".8" fill="#5aa9d6"/></svg>
+        <span class="format">1 L · ×12</span>
+      </div>
+      <div class="corps">
+        <div class="meta"><span class="ref">GM020</span><span class="categorie">Boissons</span></div>
+        <h3 class="nom">Jus d'orange 1L x12</h3>
+        <div class="prix-zone">
+          <div class="prix">13,52 <span class="unite">€</span></div>
+          <div class="prix-note">HT / colis</div>
+          <div class="dispo bas"><span class="pt"></span>Stock limité</div>
+        </div>
+        <button class="ajout" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>Ajouter au devis</button>
+      </div>
+    </article>
+    <article class="produit" data-ref="GM021">
+      <div class="vignette" style="--tint:#eaf4fa">
+        <svg class="illus" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect x="29" y="8" width="6" height="4" rx="1" fill="#1b5e3f"/><path d="M28 12h8v5l2 3v27a4 4 0 0 1-4 4h-4a4 4 0 0 1-4-4V20l2-3z" fill="#5aa9d6"/><path d="M28 12h8v5l2 3v4H26v-4l2-3z" fill="#4795c2"/><rect x="25.5" y="30" width="13" height="14" rx="1.6" fill="#fff" opacity=".94"/><rect x="28" y="33" width="8" height="2.2" rx="1.1" fill="#1b5e3f"/><rect x="28" y="37" width="8" height="1.6" rx=".8" fill="#5aa9d6"/><rect x="28" y="40" width="5" height="1.6" rx=".8" fill="#5aa9d6"/></svg>
+        <span class="format">1 L · ×12</span>
+      </div>
+      <div class="corps">
+        <div class="meta"><span class="ref">GM021</span><span class="categorie">Boissons</span></div>
+        <h3 class="nom">Soda cola 1L x12</h3>
+        <div class="prix-zone">
+          <div class="prix">11,52 <span class="unite">€</span></div>
+          <div class="prix-note">HT / colis</div>
+          <div class="dispo bas"><span class="pt"></span>Stock limité</div>
+        </div>
+        <button class="ajout" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>Ajouter au devis</button>
+      </div>
+    </article>
+    <article class="produit" data-ref="GM022">
+      <div class="vignette" style="--tint:#f6ede1"><span class="badge-promo">&minus;12%</span>
+        <svg class="illus" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><circle cx="32" cy="33" r="15" fill="#cd9852"/><circle cx="32" cy="33" r="15" fill="none" stroke="#b07e3e" stroke-width="1.4"/><g fill="#6b4423"><circle cx="27" cy="28" r="2"/><circle cx="36.5" cy="30" r="2.2"/><circle cx="30" cy="37" r="2"/><circle cx="37" cy="38" r="1.8"/><circle cx="24.5" cy="34" r="1.6"/><circle cx="32" cy="32" r="1.6"/></g></svg>
+        <span class="format">×36</span>
+      </div>
+      <div class="corps">
+        <div class="meta"><span class="ref">GM022</span><span class="categorie">Biscuiterie</span></div>
+        <h3 class="nom">Biscuits fourrés x36</h3>
+        <div class="prix-zone">
+          <div class="prix"><span class="prix-barre">13,69</span>12,05 <span class="unite">€</span></div>
+          <div class="prix-note">HT / colis</div>
+          <div class="dispo ok"><span class="pt"></span>En stock</div>
+        </div>
+        <button class="ajout" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>Ajouter au devis</button>
+      </div>
+    </article>
+    <article class="produit" data-ref="GM023">
+      <div class="vignette" style="--tint:#f6ede1">
+        <svg class="illus" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><circle cx="32" cy="33" r="15" fill="#cd9852"/><circle cx="32" cy="33" r="15" fill="none" stroke="#b07e3e" stroke-width="1.4"/><g fill="#6b4423"><circle cx="27" cy="28" r="2"/><circle cx="36.5" cy="30" r="2.2"/><circle cx="30" cy="37" r="2"/><circle cx="37" cy="38" r="1.8"/><circle cx="24.5" cy="34" r="1.6"/><circle cx="32" cy="32" r="1.6"/></g></svg>
+        <span class="format">100 g · ×50</span>
+      </div>
+      <div class="corps">
+        <div class="meta"><span class="ref">GM023</span><span class="categorie">Biscuiterie</span></div>
+        <h3 class="nom">Chocolat tablette 100g x50</h3>
+        <div class="prix-zone">
+          <div class="prix">34,00 <span class="unite">€</span></div>
+          <div class="prix-note">HT / colis</div>
+          <div class="dispo ok"><span class="pt"></span>En stock</div>
+        </div>
+        <button class="ajout" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>Ajouter au devis</button>
+      </div>
+    </article>
+    <article class="produit" data-ref="GM024">
+      <div class="vignette" style="--tint:#fbf2e0"><span class="badge-promo">&minus;12%</span>
+        <svg class="illus" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect x="25" y="15.5" width="14" height="7" rx="1.5" fill="#1b5e3f"/><rect x="23" y="22" width="18" height="27" rx="3" fill="#e7a93a"/><rect x="23" y="22" width="18" height="6.5" fill="#d2952b"/><rect x="27" y="31" width="10" height="11" rx="1.3" fill="#fff"/><path d="M32 33.5c2 0 3.2 1.6 3.2 3.2 0 1.8-1.6 3.3-3.2 4-1.6-.7-3.2-2.2-3.2-4 0-1.6 1.2-3.2 3.2-3.2z" fill="#e7a93a"/></svg>
+        <span class="format">850 g · ×12</span>
+      </div>
+      <div class="corps">
+        <div class="meta"><span class="ref">GM024</span><span class="categorie">Épicerie sucrée</span></div>
+        <h3 class="nom">Confiture abricot 850g x12</h3>
+        <div class="prix-zone">
+          <div class="prix"><span class="prix-barre">22,20</span>19,54 <span class="unite">€</span></div>
+          <div class="prix-note">HT / colis</div>
+          <div class="dispo ok"><span class="pt"></span>En stock</div>
+        </div>
+        <button class="ajout" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>Ajouter au devis</button>
+      </div>
+    </article>
+    <article class="produit" data-ref="GM025">
+      <div class="vignette" style="--tint:#fbf2e0">
+        <svg class="illus" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect x="25" y="15.5" width="14" height="7" rx="1.5" fill="#1b5e3f"/><rect x="23" y="22" width="18" height="27" rx="3" fill="#e7a93a"/><rect x="23" y="22" width="18" height="6.5" fill="#d2952b"/><rect x="27" y="31" width="10" height="11" rx="1.3" fill="#fff"/><path d="M32 33.5c2 0 3.2 1.6 3.2 3.2 0 1.8-1.6 3.3-3.2 4-1.6-.7-3.2-2.2-3.2-4 0-1.6 1.2-3.2 3.2-3.2z" fill="#e7a93a"/></svg>
+        <span class="format">1 kg · ×6</span>
+      </div>
+      <div class="corps">
+        <div class="meta"><span class="ref">GM025</span><span class="categorie">Épicerie sucrée</span></div>
+        <h3 class="nom">Miel pur 1kg x6</h3>
+        <div class="prix-zone">
+          <div class="prix">36,53 <span class="unite">€</span></div>
+          <div class="prix-note">HT / colis</div>
+          <div class="dispo ok"><span class="pt"></span>En stock</div>
+        </div>
+        <button class="ajout" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>Ajouter au devis</button>
+      </div>
+    </article>
+    <article class="produit" data-ref="GM026">
+      <div class="vignette" style="--tint:#fbf2e0">
+        <svg class="illus" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect x="25" y="15.5" width="14" height="7" rx="1.5" fill="#1b5e3f"/><rect x="23" y="22" width="18" height="27" rx="3" fill="#e7a93a"/><rect x="23" y="22" width="18" height="6.5" fill="#d2952b"/><rect x="27" y="31" width="10" height="11" rx="1.3" fill="#fff"/><path d="M32 33.5c2 0 3.2 1.6 3.2 3.2 0 1.8-1.6 3.3-3.2 4-1.6-.7-3.2-2.2-3.2-4 0-1.6 1.2-3.2 3.2-3.2z" fill="#e7a93a"/></svg>
+        <span class="format">5 kg</span>
+      </div>
+      <div class="corps">
+        <div class="meta"><span class="ref">GM026</span><span class="categorie">Épicerie sucrée</span></div>
+        <h3 class="nom">Dattes Deglet Nour 5kg</h3>
+        <div class="prix-zone">
+          <div class="prix">34,05 <span class="unite">€</span></div>
+          <div class="prix-note">HT / colis</div>
+          <div class="dispo ok"><span class="pt"></span>En stock</div>
+        </div>
+        <button class="ajout" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>Ajouter au devis</button>
+      </div>
+    </article>
+    <article class="produit" data-ref="GM027">
+      <div class="vignette" style="--tint:#eff1f3">
+        <svg class="illus" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect x="26" y="14" width="12" height="6.5" rx="1.6" fill="#1b5e3f"/><g fill="#0f3a27"><circle cx="29" cy="16.6" r=".85"/><circle cx="32" cy="16.6" r=".85"/><circle cx="35" cy="16.6" r=".85"/><circle cx="30.5" cy="18.4" r=".85"/><circle cx="33.5" cy="18.4" r=".85"/></g><rect x="25" y="20.5" width="14" height="29.5" rx="3" fill="#d3d8dd"/><rect x="27" y="29" width="10" height="14" rx="1.6" fill="#fff"/><rect x="29" y="32" width="6" height="2" rx="1" fill="#1b5e3f"/><rect x="29" y="35.5" width="6" height="1.6" rx=".8" fill="#c0883a"/><rect x="29" y="38.5" width="4" height="1.6" rx=".8" fill="#c0883a"/></svg>
+        <span class="format">1 kg · ×24</span>
+      </div>
+      <div class="corps">
+        <div class="meta"><span class="ref">GM027</span><span class="categorie">Condiments</span></div>
+        <h3 class="nom">Sel de table 1kg x24</h3>
+        <div class="prix-zone">
+          <div class="prix">7,20 <span class="unite">€</span></div>
+          <div class="prix-note">HT / colis</div>
+          <div class="dispo ok"><span class="pt"></span>En stock</div>
+        </div>
+        <button class="ajout" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>Ajouter au devis</button>
+      </div>
+    </article>
+    <article class="produit" data-ref="GM028">
+      <div class="vignette" style="--tint:#eff1f3">
+        <svg class="illus" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect x="26" y="14" width="12" height="6.5" rx="1.6" fill="#1b5e3f"/><g fill="#0f3a27"><circle cx="29" cy="16.6" r=".85"/><circle cx="32" cy="16.6" r=".85"/><circle cx="35" cy="16.6" r=".85"/><circle cx="30.5" cy="18.4" r=".85"/><circle cx="33.5" cy="18.4" r=".85"/></g><rect x="25" y="20.5" width="14" height="29.5" rx="3" fill="#d3d8dd"/><rect x="27" y="29" width="10" height="14" rx="1.6" fill="#fff"/><rect x="29" y="32" width="6" height="2" rx="1" fill="#1b5e3f"/><rect x="29" y="35.5" width="6" height="1.6" rx=".8" fill="#c0883a"/><rect x="29" y="38.5" width="4" height="1.6" rx=".8" fill="#c0883a"/></svg>
+        <span class="format">1 L · ×12</span>
+      </div>
+      <div class="corps">
+        <div class="meta"><span class="ref">GM028</span><span class="categorie">Condiments</span></div>
+        <h3 class="nom">Vinaigre 1L x12</h3>
+        <div class="prix-zone">
+          <div class="prix">8,40 <span class="unite">€</span></div>
+          <div class="prix-note">HT / colis</div>
+          <div class="dispo ok"><span class="pt"></span>En stock</div>
+        </div>
+        <button class="ajout" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>Ajouter au devis</button>
+      </div>
+    </article>
+    <article class="produit" data-ref="GM029">
+      <div class="vignette" style="--tint:#eff1f3">
+        <svg class="illus" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect x="26" y="14" width="12" height="6.5" rx="1.6" fill="#1b5e3f"/><g fill="#0f3a27"><circle cx="29" cy="16.6" r=".85"/><circle cx="32" cy="16.6" r=".85"/><circle cx="35" cy="16.6" r=".85"/><circle cx="30.5" cy="18.4" r=".85"/><circle cx="33.5" cy="18.4" r=".85"/></g><rect x="25" y="20.5" width="14" height="29.5" rx="3" fill="#d3d8dd"/><rect x="27" y="29" width="10" height="14" rx="1.6" fill="#fff"/><rect x="29" y="32" width="6" height="2" rx="1" fill="#1b5e3f"/><rect x="29" y="35.5" width="6" height="1.6" rx=".8" fill="#c0883a"/><rect x="29" y="38.5" width="4" height="1.6" rx=".8" fill="#c0883a"/></svg>
+        <span class="format">500 g · ×10</span>
+      </div>
+      <div class="corps">
+        <div class="meta"><span class="ref">GM029</span><span class="categorie">Condiments</span></div>
+        <h3 class="nom">Épices ras el hanout 500g x10</h3>
+        <div class="prix-zone">
+          <div class="prix">21,50 <span class="unite">€</span></div>
+          <div class="prix-note">HT / colis</div>
+          <div class="dispo ok"><span class="pt"></span>En stock</div>
+        </div>
+        <button class="ajout" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>Ajouter au devis</button>
+      </div>
+    </article>
+    <article class="produit" data-ref="GM030">
+      <div class="vignette" style="--tint:#eff1f3">
+        <svg class="illus" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"><rect x="26" y="14" width="12" height="6.5" rx="1.6" fill="#1b5e3f"/><g fill="#0f3a27"><circle cx="29" cy="16.6" r=".85"/><circle cx="32" cy="16.6" r=".85"/><circle cx="35" cy="16.6" r=".85"/><circle cx="30.5" cy="18.4" r=".85"/><circle cx="33.5" cy="18.4" r=".85"/></g><rect x="25" y="20.5" width="14" height="29.5" rx="3" fill="#d3d8dd"/><rect x="27" y="29" width="10" height="14" rx="1.6" fill="#fff"/><rect x="29" y="32" width="6" height="2" rx="1" fill="#1b5e3f"/><rect x="29" y="35.5" width="6" height="1.6" rx=".8" fill="#c0883a"/><rect x="29" y="38.5" width="4" height="1.6" rx=".8" fill="#c0883a"/></svg>
+        <span class="format">5 kg</span>
+      </div>
+      <div class="corps">
+        <div class="meta"><span class="ref">GM030</span><span class="categorie">Condiments</span></div>
+        <h3 class="nom">Olives vertes 5kg</h3>
+        <div class="prix-zone">
+          <div class="prix">16,50 <span class="unite">€</span></div>
+          <div class="prix-note">HT / colis</div>
+          <div class="dispo ok"><span class="pt"></span>En stock</div>
+        </div>
+        <button class="ajout" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>Ajouter au devis</button>
+      </div>
+    </article>
+  </div>
+</main>
+
+<footer><div class="wrap">
+  <div><div class="name">Grossimarket</div><p>Grossiste alimentaire B2B au service des CHR, épiceries et distributeurs. Tarifs professionnels, livraison sous 48h partout en France métropolitaine.</p></div>
+  <div class="col"><h4>Catalogue</h4><a href="#">Épicerie sèche</a><a href="#">Conserves</a><a href="#">Boissons</a><a href="#">Produits laitiers</a></div>
+  <div class="col"><h4>Services pros</h4><a href="#">Ouvrir un compte</a><a href="#">Tarifs dégressifs</a><a href="#">Livraison &amp; logistique</a><a href="#">Nous contacter</a></div>
+  <div class="col"><h4>Contact</h4><a href="#">01 80 88 00 00</a><a href="#">contact@grossimarket.fr</a><a href="#">MIN de Rungis, Val-de-Marne</a></div>
+</div>
+<div class="legal"><div class="wrap">Grossimarket SARL · Démonstration fictive réalisée pour le projet VeillePrix — toute ressemblance avec une enseigne réelle est fortuite.</div></div>
+</footer>
+
+</body>
+</html>
