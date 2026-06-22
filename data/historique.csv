@@ -1,0 +1,31 @@
+ref,nom,categorie,prix,prix_avant_promo,en_promo,en_rupture,date_releve
+GM001,Huile de tournesol 5L,Huiles,12.1,,False,False,2026-06-22
+GM002,Huile d'olive extra vierge 1L,Huiles,6.55,,False,False,2026-06-22
+GM003,Farine de blé T55 25kg,Farines,21.88,,True,False,2026-06-22
+GM004,Farine de blé T45 10kg,Farines,7.4,,False,False,2026-06-22
+GM005,Sucre granulé 50kg,Sucres,46.25,,False,False,2026-06-22
+GM006,Thé vert Chunmee 5kg,Thés & Cafés,39.33,,False,False,2026-06-22
+GM007,Café moulu 1kg,Thés & Cafés,14.86,,False,False,2026-06-22
+GM008,Riz long grain 25kg,Riz & Pâtes,34.34,,False,False,2026-06-22
+GM009,Pâtes spaghetti 500g x20,Riz & Pâtes,16.88,,False,False,2026-06-22
+GM010,Couscous moyen 25kg,Riz & Pâtes,26.19,,False,False,2026-06-22
+GM011,Tomate concentrée 4.5kg x6,Conserves,25.67,,False,False,2026-06-22
+GM012,Sardines à l'huile x50,Conserves,37.19,,False,True,2026-06-22
+GM013,Thon entier à l'huile x24,Conserves,53.88,,False,False,2026-06-22
+GM014,Pois chiches 1kg x12,Légumineuses,13.94,,False,False,2026-06-22
+GM015,Lentilles vertes 1kg x12,Légumineuses,18.04,,False,False,2026-06-22
+GM016,Lait UHT 1L x12,Laitiers,10.0,,False,False,2026-06-22
+GM017,Lait en poudre 2.5kg,Laitiers,19.16,,False,False,2026-06-22
+GM018,Beurre 200g x40,Laitiers,74.66,,False,False,2026-06-22
+GM019,Eau minérale 1.5L x6,Boissons,4.58,,False,True,2026-06-22
+GM020,Jus d'orange 1L x12,Boissons,10.65,,True,False,2026-06-22
+GM021,Soda cola 1L x12,Boissons,11.57,,False,False,2026-06-22
+GM022,Biscuits fourrés x36,Biscuiterie,13.32,,False,False,2026-06-22
+GM023,Chocolat tablette 100g x50,Biscuiterie,30.19,,False,False,2026-06-22
+GM024,Confiture abricot 850g x12,Épicerie sucrée,20.65,,False,False,2026-06-22
+GM025,Miel pur 1kg x6,Épicerie sucrée,36.11,,False,False,2026-06-22
+GM026,Dattes Deglet Nour 5kg,Épicerie sucrée,33.2,,False,True,2026-06-22
+GM027,Sel de table 1kg x24,Condiments,5.05,,True,False,2026-06-22
+GM028,Vinaigre 1L x12,Condiments,9.53,,False,False,2026-06-22
+GM029,Épices ras el hanout 500g x10,Condiments,22.88,,False,False,2026-06-22
+GM030,Olives vertes 5kg,Condiments,16.35,,False,False,2026-06-22
