@@ -419,3 +419,33 @@ GM027,Sel de table 1kg x24,Condiments,7.27,,False,False,2026-09-21
 GM028,Vinaigre 1L x12,Condiments,8.81,,False,False,2026-09-21
 GM029,Épices ras el hanout 500g x10,Condiments,26.27,,False,True,2026-09-21
 GM030,Olives vertes 5kg,Condiments,17.66,,False,False,2026-09-21
+GM001,Huile de tournesol 5L,Huiles,12.44,,False,False,2026-09-28
+GM002,Huile d'olive extra vierge 1L,Huiles,9.07,,False,False,2026-09-28
+GM003,Farine de blé T55 25kg,Farines,16.53,,False,False,2026-09-28
+GM004,Farine de blé T45 10kg,Farines,7.13,,False,False,2026-09-28
+GM005,Sucre granulé 50kg,Sucres,38.98,,True,False,2026-09-28
+GM006,Thé vert Chunmee 5kg,Thés & Cafés,46.37,,False,False,2026-09-28
+GM007,Café moulu 1kg,Thés & Cafés,12.21,,False,False,2026-09-28
+GM008,Riz long grain 25kg,Riz & Pâtes,35.06,,False,False,2026-09-28
+GM009,Pâtes spaghetti 500g x20,Riz & Pâtes,14.58,,True,False,2026-09-28
+GM010,Couscous moyen 25kg,Riz & Pâtes,22.59,,False,False,2026-09-28
+GM011,Tomate concentrée 4.5kg x6,Conserves,26.2,,False,False,2026-09-28
+GM012,Sardines à l'huile x50,Conserves,27.69,,False,False,2026-09-28
+GM013,Thon entier à l'huile x24,Conserves,45.61,,False,False,2026-09-28
+GM014,Pois chiches 1kg x12,Légumineuses,13.98,,False,False,2026-09-28
+GM015,Lentilles vertes 1kg x12,Légumineuses,14.98,,True,False,2026-09-28
+GM016,Lait UHT 1L x12,Laitiers,9.54,,False,False,2026-09-28
+GM017,Lait en poudre 2.5kg,Laitiers,17.83,,False,False,2026-09-28
+GM018,Beurre 200g x40,Laitiers,102.03,,False,False,2026-09-28
+GM019,Eau minérale 1.5L x6,Boissons,3.65,,False,False,2026-09-28
+GM020,Jus d'orange 1L x12,Boissons,12.04,,False,False,2026-09-28
+GM021,Soda cola 1L x12,Boissons,10.37,,True,False,2026-09-28
+GM022,Biscuits fourrés x36,Biscuiterie,9.62,,False,False,2026-09-28
+GM023,Chocolat tablette 100g x50,Biscuiterie,30.03,,False,False,2026-09-28
+GM024,Confiture abricot 850g x12,Épicerie sucrée,18.32,,False,False,2026-09-28
+GM025,Miel pur 1kg x6,Épicerie sucrée,38.65,,False,False,2026-09-28
+GM026,Dattes Deglet Nour 5kg,Épicerie sucrée,27.11,,False,False,2026-09-28
+GM027,Sel de table 1kg x24,Condiments,6.88,,True,False,2026-09-28
+GM028,Vinaigre 1L x12,Condiments,7.5,,False,False,2026-09-28
+GM029,Épices ras el hanout 500g x10,Condiments,19.16,,True,False,2026-09-28
+GM030,Olives vertes 5kg,Condiments,14.72,,False,False,2026-09-28
